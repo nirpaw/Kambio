@@ -10,6 +10,7 @@ namespace ClassLibrary1
     {
         public List<Player> Player { get; set; }
         public Deck TheDeck { get; set; }
+        public int PlayerTurnIndex { get; set; }
 
         public SessionManager(List<Player> iPlayer)
         {
@@ -36,9 +37,9 @@ namespace ClassLibrary1
 
         public void SwapStandCardWithPlayerHandCard(int playerTurnIndex, int indexCardToSwap)
         {
-            if (Player[playerTurnIndex].PlayerHandCards.Count == 0)
+            if (Player[PlayerTurnIndex].PlayerHandCards.Count == 0)
             {
-                Player[playerTurnIndex].TakeOneCard(TheDeck.StandCard);
+                Player[PlayerTurnIndex].TakeOneCard(TheDeck.StandCard);
                 TheDeck.StandCard = null;
             }
             else
@@ -46,6 +47,33 @@ namespace ClassLibrary1
                 TheDeck.StandCard = Player[playerTurnIndex].SwapCardInMyHand(TheDeck.StandCard, indexCardToSwap);
                 TheDeck.DropStandCard();
             }
+        }
+
+        public Card WatchOneOfYourCards(int indexCardToWatch)
+        {
+            Card cardToWatch;
+            if (Player[PlayerTurnIndex].PlayerHandCards.Count != 0)
+            {
+                cardToWatch = Player[PlayerTurnIndex].PlayerHandCards[indexCardToWatch];
+            }
+            else
+            {
+                cardToWatch = null;
+            }
+
+            return cardToWatch;
+        }
+
+        public Card WatchOnOfOtherPlayerCards(int indexOtherPlayer, int indexCardToWatch)
+        {
+            return Player[indexOtherPlayer].PlayerHandCards[indexCardToWatch];
+        }
+
+        public void BlindSwap(int indexOtherPlayer, int indexMyCard, int indexOtherCard)
+        {
+            Card temp = Player[PlayerTurnIndex].PlayerHandCards[indexMyCard];
+            Player[PlayerTurnIndex].PlayerHandCards[indexMyCard] = Player[indexOtherPlayer].PlayerHandCards[indexOtherCard];
+            Player[indexOtherPlayer].PlayerHandCards[indexOtherCard] = temp;
         }
 
     }

@@ -35,12 +35,13 @@
             this.listBoxPlayer2 = new System.Windows.Forms.ListBox();
             this.listBoxDropped = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonTakeFresh = new System.Windows.Forms.Button();
             this.listBoxStand = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.buttonDoAction = new System.Windows.Forms.Button();
+            this.labelWatch = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listBoxFrsehCards
@@ -104,15 +105,15 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // buttonTakeFresh
             // 
-            this.button3.Location = new System.Drawing.Point(132, 279);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(134, 72);
-            this.button3.TabIndex = 12;
-            this.button3.Text = "Take card From Fresh <<<<<<<<<";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.buttonTakeFresh.Location = new System.Drawing.Point(132, 279);
+            this.buttonTakeFresh.Name = "buttonTakeFresh";
+            this.buttonTakeFresh.Size = new System.Drawing.Size(134, 72);
+            this.buttonTakeFresh.TabIndex = 12;
+            this.buttonTakeFresh.Text = "Take card From Fresh <<<<<<<<<";
+            this.buttonTakeFresh.UseVisualStyleBackColor = true;
+            this.buttonTakeFresh.Click += new System.EventHandler(this.button3_Click);
             // 
             // listBoxStand
             // 
@@ -151,26 +152,37 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // button6
+            // buttonDoAction
             // 
-            this.button6.Location = new System.Drawing.Point(278, 387);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 17;
-            this.button6.Text = "do action";
-            this.button6.UseVisualStyleBackColor = true;
+            this.buttonDoAction.Location = new System.Drawing.Point(278, 387);
+            this.buttonDoAction.Name = "buttonDoAction";
+            this.buttonDoAction.Size = new System.Drawing.Size(75, 23);
+            this.buttonDoAction.TabIndex = 17;
+            this.buttonDoAction.Text = "do action";
+            this.buttonDoAction.UseVisualStyleBackColor = true;
+            this.buttonDoAction.Click += new System.EventHandler(this.buttonDoAction_Click);
+            // 
+            // labelWatch
+            // 
+            this.labelWatch.AutoSize = true;
+            this.labelWatch.Location = new System.Drawing.Point(298, 180);
+            this.labelWatch.Name = "labelWatch";
+            this.labelWatch.Size = new System.Drawing.Size(36, 13);
+            this.labelWatch.TabIndex = 19;
+            this.labelWatch.Text = "watch";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(704, 765);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.labelWatch);
+            this.Controls.Add(this.buttonDoAction);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.listBoxStand);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.buttonTakeFresh);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.listBoxDropped);
             this.Controls.Add(this.listBoxPlayer2);
@@ -193,12 +205,13 @@
         private System.Windows.Forms.ListBox listBoxPlayer2;
         private System.Windows.Forms.ListBox listBoxDropped;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonTakeFresh;
         private System.Windows.Forms.ListBox listBoxStand;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button buttonDoAction;
+        private System.Windows.Forms.Label labelWatch;
     }
 }
 

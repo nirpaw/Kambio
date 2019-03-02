@@ -46,9 +46,12 @@ namespace kambio
 
         private void button2_Click(object sender, EventArgs e)
         {
-            sessionManager.TheDeck.ChooseTopDroppedCard();
-            listBoxStand.DataSource = new BindingSource(sessionManager.TheDeck.StandCard, null);
-            reffreshListBoxDropped();
+            if (listBoxStand.Items.Count == 0)
+            {
+                sessionManager.TheDeck.ChooseTopDroppedCard();
+                listBoxStand.DataSource = new BindingSource(sessionManager.TheDeck.StandCard, null);
+                reffreshListBoxDropped();
+            }
         }
 
         private void reffreshStand()
@@ -91,6 +94,35 @@ namespace kambio
             reffreshPlayerLists();
             reffreshStand();
      
+        }
+
+        private void buttonDoAction_Click(object sender, EventArgs e)
+        {
+            int mySelectedCard = listBoxPlayer1.SelectedIndex;
+            int otherSelectedCard = listBoxPlayer2.SelectedIndex;
+            if (sessionManager.TheDeck.StandCard.Rank == eCardRank.Seven ||
+                sessionManager.TheDeck.StandCard.Rank == eCardRank.Eight)
+            {
+                labelWatch.Text = sessionManager.WatchOneOfYourCards(mySelectedCard).ToString();
+            }
+
+            if (sessionManager.TheDeck.StandCard.Rank == eCardRank.Nine ||
+                sessionManager.TheDeck.StandCard.Rank == eCardRank.Ten)
+            {
+                labelWatch.Text = sessionManager.WatchOnOfOtherPlayerCards(1, otherSelectedCard).ToString();
+            }
+
+            if (sessionManager.TheDeck.StandCard.Rank == eCardRank.Jack ||
+                sessionManager.TheDeck.StandCard.Rank == eCardRank.Queen)
+            {
+                sessionManager.BlindSwap(1, mySelectedCard , otherSelectedCard);
+            }
+
+            reffreshListBoxDropped();
+            reffreshListBoxFresh();
+            reffreshPlayerLists();
+            reffreshStand();
+           
         }
     }
 }
