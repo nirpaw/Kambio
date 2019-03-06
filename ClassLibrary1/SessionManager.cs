@@ -8,27 +8,42 @@ namespace ClassLibrary1
 {
     public class SessionManager
     {
-        public List<Player> Player { get; set; }
+        public List<Player> Players { get; set; }
         public Deck TheDeck { get; set; }
         public int PlayerTurnIndex { get; set; }
+        public int LastGameWinnerIndex { get; set; }
+        public int GamesCounter { get; set; }
 
-        public SessionManager(List<Player> iPlayer)
+        public SessionManager(List<Player> iPlayers)
         {
-            Player = iPlayer;
-            TheDeck = new Deck();
+            Players = iPlayers;
+            GamesCounter = 0;
         }
 
         public void StartNewGame()
         {
+            TheDeck = new Deck();
             DevideCardsBeetweenPlayers();
+            chooseWhoStart();
+        }
 
+        private void chooseWhoStart()
+        {
+            if (GamesCounter == 0)
+            {
+                PlayerTurnIndex = 0; // TODO: choose randomly instead of 0
+            }
+            else
+            {
+                PlayerTurnIndex = LastGameWinnerIndex;
+            }
         }
 
         private void DevideCardsBeetweenPlayers()
         {
             for (int i = 0; i < 4; i++)
             {
-                foreach (Player player in Player)
+                foreach (Player player in Players)
                 {
                     player.TakeOneCard(TheDeck.TakeAndDropTopFreshCard());
                 }
@@ -37,14 +52,14 @@ namespace ClassLibrary1
 
         public void SwapStandCardWithPlayerHandCard(int playerTurnIndex, int indexCardToSwap)
         {
-            if (Player[PlayerTurnIndex].PlayerHandCards.Count == 0)
+            if (Players[PlayerTurnIndex].PlayerHandCards.Count == 0)
             {
-                Player[PlayerTurnIndex].TakeOneCard(TheDeck.StandCard);
+                Players[PlayerTurnIndex].TakeOneCard(TheDeck.StandCard);
                 TheDeck.StandCard = null;
             }
             else
             {
-                TheDeck.StandCard = Player[playerTurnIndex].SwapCardInMyHand(TheDeck.StandCard, indexCardToSwap);
+                TheDeck.StandCard = Players[playerTurnIndex].SwapCardInMyHand(TheDeck.StandCard, indexCardToSwap);
                 TheDeck.DropStandCard();
             }
         }
@@ -52,9 +67,9 @@ namespace ClassLibrary1
         public Card WatchOneOfYourCards(int indexCardToWatch)
         {
             Card cardToWatch;
-            if (Player[PlayerTurnIndex].PlayerHandCards.Count != 0)
+            if (Players[PlayerTurnIndex].PlayerHandCards.Count != 0)
             {
-                cardToWatch = Player[PlayerTurnIndex].PlayerHandCards[indexCardToWatch];
+                cardToWatch = Players[PlayerTurnIndex].PlayerHandCards[indexCardToWatch];
             }
             else
             {
@@ -66,14 +81,14 @@ namespace ClassLibrary1
 
         public Card WatchOnOfOtherPlayerCards(int indexOtherPlayer, int indexCardToWatch)
         {
-            return Player[indexOtherPlayer].PlayerHandCards[indexCardToWatch];
+            return Players[indexOtherPlayer].PlayerHandCards[indexCardToWatch];
         }
 
         public void BlindSwap(int indexOtherPlayer, int indexMyCard, int indexOtherCard)
         {
-            Card temp = Player[PlayerTurnIndex].PlayerHandCards[indexMyCard];
-            Player[PlayerTurnIndex].PlayerHandCards[indexMyCard] = Player[indexOtherPlayer].PlayerHandCards[indexOtherCard];
-            Player[indexOtherPlayer].PlayerHandCards[indexOtherCard] = temp;
+            Card temp = Players[PlayerTurnIndex].PlayerHandCards[indexMyCard];
+            Players[PlayerTurnIndex].PlayerHandCards[indexMyCard] = Players[indexOtherPlayer].PlayerHandCards[indexOtherCard];
+            Players[indexOtherPlayer].PlayerHandCards[indexOtherCard] = temp;
         }
 
     }

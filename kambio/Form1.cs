@@ -20,17 +20,14 @@ namespace kambio
             Player p1 = new Player("Nir");
             Player p2 = new Player("Yossi");
             sessionManager = new SessionManager(new List<Player>(){p1, p2});
-            reffreshListBoxFresh();
-
-
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
             sessionManager.StartNewGame();
             reffreshListBoxFresh();
-            listBoxPlayer1.DataSource = new BindingSource(sessionManager.Player[0].PlayerHandCards, null);
-            listBoxPlayer2.DataSource = new BindingSource(sessionManager.Player[1].PlayerHandCards, null);
+            listBoxPlayer1.DataSource = new BindingSource(sessionManager.Players[0].PlayerHandCards, null);
+            listBoxPlayer2.DataSource = new BindingSource(sessionManager.Players[1].PlayerHandCards, null);
 
         }
 
@@ -62,8 +59,8 @@ namespace kambio
 
         private void reffreshPlayerLists()
         {
-            listBoxPlayer1.DataSource = new BindingSource(sessionManager.Player[0].PlayerHandCards, null);
-            listBoxPlayer2.DataSource = new BindingSource(sessionManager.Player[1].PlayerHandCards, null);
+            listBoxPlayer1.DataSource = new BindingSource(sessionManager.Players[0].PlayerHandCards, null);
+            listBoxPlayer2.DataSource = new BindingSource(sessionManager.Players[1].PlayerHandCards, null);
 
         }
         private void reffreshListBoxFresh()
