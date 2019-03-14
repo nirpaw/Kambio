@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClassLibrary1;
 
+
 namespace kambio
 {
     public partial class Form1 : Form
@@ -17,9 +18,9 @@ namespace kambio
         public Form1()
         {
             InitializeComponent();
-            Player p1 = new Player("Nir");
-            Player p2 = new Player("Yossi");
-            sessionManager = new SessionManager(new List<Player>(){p1, p2});
+            Player p1 = new Player();
+            Player p2 = new Player();
+            sessionManager = new SessionManager(new List<Player>(){p1, p2}, "test");
         }
 
         private void button1_Click_1(object sender, EventArgs e)

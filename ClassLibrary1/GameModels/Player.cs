@@ -8,12 +8,11 @@ namespace ClassLibrary1
 {
     public class Player
     {
-        public String Name { get; set; }
+        public User TheUser { get; set; }
         public List<Card> PlayerHandCards { get; set; }
 
-        public Player(string iName)
+        public Player()
         {
-            Name = iName;
             PlayerHandCards = new List<Card>();
         }
 

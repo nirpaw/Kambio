@@ -34,7 +34,7 @@ namespace ClassLibrary1
             }
             else
             {
-                throw new  Exception("You can not choose pasted card");
+                throw new DropOnPastedCardException();
             }
         }
         private void removeTopDroppedCard()
